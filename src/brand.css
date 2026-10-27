@@ -15,7 +15,7 @@
   background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(12px); transition: background 0.3s, border-color 0.3s, color 0.3s;
 }
 .chip-btn:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.25); }
-.chip-btn[aria-pressed='true'] { background: var(--grad); color: #05050a; border-color: transparent; }
+.chip-btn[aria-pressed='true'] { background: var(--fg); color: #05050a; border-color: transparent; }
 
 /* construction overlay (inside the logo SVG, user units) */
 .construct { pointer-events: none; }
@@ -50,7 +50,7 @@
 .b-var > img.b-var__mark { padding: 14% 30%; }
 .b-var--dark { background: #0b0b14; }
 .b-var--light { background: var(--fg); }
-.b-var--grad { background: var(--grad); }
+.b-var--grad { background: var(--cyan); }
 .b-var figcaption { display: flex; justify-content: space-between; gap: 16px; padding: 16px 22px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em;
   border-top: 1px solid var(--line); color: var(--muted); background: rgba(5, 5, 10, 0.5); backdrop-filter: blur(8px); }
 .b-var figcaption a { color: var(--cyan); white-space: nowrap; }
