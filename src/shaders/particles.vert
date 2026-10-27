@@ -121,15 +121,18 @@ void main(){
   vec4 clip = projectionMatrix * mv;
   vec2 ndc = clip.xy / clip.w;
   vec2 d = ndc - uMouse;
-  float f = smoothstep(0.32, 0.0, length(d)) * uMouseForce;
-  mv.xy += normalize(d + 0.0001) * f * 0.55;
+  // wide, soft falloff (squared smoothstep → no hard edge) and a gentle push with a slight swirl
+  float fall = smoothstep(0.5, 0.0, length(d));
+  float f = fall * fall * uMouseForce;
+  vec2 dir = normalize(d + 0.0001);
+  mv.xy += (dir + vec2(-dir.y, dir.x) * 0.35) * f * (0.18 + aRand * 0.1);
 
   gl_Position = projectionMatrix * mv;
-  float size = uSize * (0.35 + aRand * 0.9) * (1.0 + f * 1.5);
+  float size = uSize * (0.35 + aRand * 0.9) * (1.0 + f * 0.45);
   gl_PointSize = size * uPixelRatio * (1.0 / -mv.z);
 
   float h = clamp(p.y * 0.25 + 0.5, 0.0, 1.0);
   vColor = mix(uColorA, uColorB, clamp(h * 0.8 + aRand * 0.4 - 0.1, 0.0, 1.0));
-  vColor = mix(vColor, vec3(1.0), f * 0.6 + step(0.985, aRand) * 0.5);
+  vColor = mix(vColor, vec3(1.0), f * 0.25 + step(0.985, aRand) * 0.5);
   vAlpha = (0.55 + aRand * 0.45) * intro;
 }

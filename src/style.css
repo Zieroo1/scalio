@@ -329,9 +329,10 @@ section { position: relative; }
 /* ---------- footer ---------- */
 .footer { overflow: hidden; padding-top: 4vh; }
 .footer__big { text-align: center; line-height: 0.78; perspective: 900px; }
-.footer__big span { display: inline-block; white-space: nowrap; font-family: var(--display); font-weight: 800; font-size: 22vw; letter-spacing: -0.07em;
-  background: linear-gradient(180deg, rgba(242, 240, 255, 0.95), rgba(139, 92, 255, 0.15)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.footer__big .char { background: inherit; -webkit-background-clip: text; background-clip: text; }
+.footer__big span { display: inline-block; white-space: nowrap; font-family: var(--display); font-weight: 800; font-size: 22vw; letter-spacing: -0.07em; color: rgba(242, 240, 255, 0.9); }
+/* gradient lives on each split char only: a background-clip:text on the parent too would paint a
+   second, untransformed copy of the glyphs behind the animated chars (ghost letters in Chrome) */
+.footer__big .char { color: transparent; background: linear-gradient(180deg, rgba(242, 240, 255, 0.95), rgba(139, 92, 255, 0.15)); -webkit-background-clip: text; background-clip: text; }
 .footer__bar { display: flex; justify-content: space-between; gap: 20px; padding-top: 28px; padding-bottom: 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
 .to-top:hover { color: var(--fg); }
 

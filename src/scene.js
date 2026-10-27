@@ -257,11 +257,14 @@ export function createScene(canvas) {
   const target = { morph: 0, x: 0, y: 0, s: 1, rx: 0, alpha: 1 };
   const cur = { ...target };
   const cA = new THREE.Color(), cB = new THREE.Color(), tmpA = new THREE.Color(), tmpB = new THREE.Color();
-  const mouse = { x: 0, y: 0, sx: 0, sy: 0 };
+  // x/y: raw pointer; sx/sy: slow parallax; px/py: cursor "lens" that trails the pointer;
+  // force eases toward `want` and `want` fades out once the pointer rests
+  const mouse = { x: 0, y: 0, sx: 0, sy: 0, px: 9, py: 9, want: 0 };
   window.addEventListener('pointermove', (e) => {
     mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    uniforms.uMouseForce.value = 1;
+    if (mouse.px === 9) { mouse.px = mouse.x; mouse.py = mouse.y; }
+    mouse.want = 1;
   });
 
   /** progress: continuous scene value (0..SCENES.length-1) */
@@ -292,11 +295,16 @@ export function createScene(canvas) {
     uniforms.uColorA.value.lerp(cA, k);
     uniforms.uColorB.value.lerp(cB, k);
     uniforms.uVelocity.value += (Math.min(Math.abs(velocity) / 40, 1) - uniforms.uVelocity.value) * k;
-    uniforms.uMouseForce.value *= 0.985;
+    mouse.want *= Math.pow(0.35, dt); // fades over ~2–3 s of stillness
+    const kf = 1 - Math.pow(0.12, dt); // ~1 s ease for force
+    uniforms.uMouseForce.value += (mouse.want - uniforms.uMouseForce.value) * kf;
 
     mouse.sx += (mouse.x - mouse.sx) * k * 0.6;
     mouse.sy += (mouse.y - mouse.sy) * k * 0.6;
-    uniforms.uMouse.value.set(mouse.x, mouse.y);
+    const kp = 1 - Math.pow(0.004, dt); // lens trails the pointer softly
+    mouse.px += (mouse.x - mouse.px) * kp;
+    mouse.py += (mouse.y - mouse.py) * kp;
+    uniforms.uMouse.value.set(mouse.px, mouse.py);
 
     const sx = mobile ? 0 : cur.x;
     const sc = cur.s * (mobile ? 0.62 : Math.min(1, viewW / 9.5));
