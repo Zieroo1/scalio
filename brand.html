@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scalio — брендбук и логотип</title>
+  <meta name="description" content="Логотип Scalio: концепция, конструкция, варианты, цвета и моушн." />
+  <meta name="theme-color" content="#05050a" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="/src/brand.css" />
+</head>
+<body class="brand-page">
+  <canvas class="webgl" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a href="./" class="nav__logo" aria-label="Scalio — на главную"><span class="nav__logo-host"></span></a>
+    <span class="mono brand-nav__title">Brand guidelines · v1.0</span>
+    <a href="./" class="btn btn--small"><span>← На сайт</span></a>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="b-hero">
+      <div class="b-hero__stage">
+        <div class="b-hero__logo"></div>
+      </div>
+      <div class="b-hero__controls">
+        <button class="chip-btn" id="replay" type="button">↻ Повторить анимацию</button>
+        <button class="chip-btn" id="construct" type="button" aria-pressed="false">⌗ Показать конструкцию</button>
+      </div>
+      <p class="b-hero__caption mono">Логотип · 64-юнитовая сетка · шрифт Unbounded SemiBold, переведён в кривые</p>
+    </section>
+
+    <!-- CONCEPT -->
+    <section class="b-section">
+      <div class="container">
+        <span class="eyebrow mono">01 — Концепция</span>
+        <h2 class="h2 b-reveal">Маленькое,<br/>которое масштабируется.</h2>
+        <div class="b-concept">
+          <article class="b-reveal">
+            <div class="b-concept__fig"><svg viewBox="0 0 60 30"><rect x="6" y="22" width="3" height="3"/><rect x="13" y="19.5" width="5.5" height="5.5"/><rect x="22.5" y="16" width="9" height="9"/><path d="M36 20.5h18" stroke-width="9"/></svg></div>
+            <h3>Пиксели растут</h3>
+            <p>Два квадрата 3 → 5,5 → и штрих в 9 юнитов. Это столбчатый график роста и сама идея масштаба: от прототипа к продукту.</p>
+          </article>
+          <article class="b-reveal">
+            <div class="b-concept__fig"><svg viewBox="0 0 60 30"><path d="M8 26h18a6 6 0 0 0 0-12h-6a6 6 0 0 1 0-12h18" stroke-width="3.5"/><circle cx="46" cy="14" r="2"/><path d="M50 14h6" stroke-width="1.5" stroke-dasharray="2 2"/></svg></div>
+            <h3>S — путь данных</h3>
+            <p>Буква собрана из прямых и двух дуг радиусом 12. Это один непрерывный маршрут: снизу вверх, слева направо, как и положено росту.</p>
+          </article>
+          <article class="b-reveal">
+            <div class="b-concept__fig"><svg viewBox="0 0 60 30"><rect x="25" y="2" width="10" height="10" class="cyan"/><rect x="25" y="15" width="10" height="13"/></svg></div>
+            <h3>Квадратная точка</h3>
+            <p>Точка над «i» — тот же пиксель, что и в знаке. Ровно в ширину штриха, цвета градиента, с поворотом на 90° в анимации.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- VARIANTS -->
+    <section class="b-section">
+      <div class="container">
+        <span class="eyebrow mono">02 — Версии</span>
+        <h2 class="h2 b-reveal">Один знак —<br/>любой носитель.</h2>
+        <div class="b-variants">
+          <figure class="b-var b-var--dark b-var--wide b-reveal"><img src="brand/scalio-logo.svg" alt="Логотип Scalio для тёмного фона" /><figcaption><span>Основной · тёмный фон</span><a href="brand/scalio-logo.svg" download>SVG ↓</a></figcaption></figure>
+          <figure class="b-var b-var--light b-var--wide b-reveal"><img src="brand/scalio-logo-dark.svg" alt="Логотип Scalio для светлого фона" /><figcaption><span>Основной · светлый фон</span><a href="brand/scalio-logo-dark.svg" download>SVG ↓</a></figcaption></figure>
+          <figure class="b-var b-var--dark b-reveal"><img src="brand/scalio-mark.svg" alt="Знак Scalio" class="b-var__mark" /><figcaption><span>Знак</span><a href="brand/scalio-mark.svg" download>SVG ↓</a></figcaption></figure>
+          <figure class="b-var b-var--grad b-reveal"><img src="brand/scalio-mark-mono.svg" alt="Монохромный знак Scalio" class="b-var__mark" /><figcaption><span>Монохром</span><a href="brand/scalio-mark-mono.svg" download>SVG ↓</a></figcaption></figure>
+          <figure class="b-var b-var--dark b-reveal"><div class="b-favs"><img src="favicon.svg" alt="Иконка 64px" width="64" height="64" /><img src="favicon.svg" alt="Иконка 32px" width="32" height="32" /><img src="favicon.svg" alt="Иконка 16px" width="16" height="16" /></div><figcaption><span>App icon · 64 / 32 / 16</span><a href="favicon.svg" download="scalio-icon.svg">SVG ↓</a></figcaption></figure>
+          <figure class="b-var b-var--dark b-var--wide b-reveal"><img src="brand/scalio-logo-animated.svg" alt="Анимированный логотип Scalio" /><figcaption><span>Анимированный SVG · чистый CSS, без JS — для презентаций, README, сайтов</span><a href="brand/scalio-logo-animated.svg" download>SVG ↓</a></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOTION LAB -->
+    <section class="b-section">
+      <div class="container">
+        <span class="eyebrow mono">03 — Моушн</span>
+        <h2 class="h2 b-reveal">Логотип,<br/>который собирается.</h2>
+        <div class="b-motion">
+          <div class="b-mcard b-reveal">
+            <div class="b-mcard__stage" data-logo="intro"></div>
+            <div class="b-mcard__foot"><div><h4>Intro</h4><p>Пиксели → штрих со световым следом → буквы → точка с щелчком 90°.</p></div><button class="chip-btn" data-replay type="button">↻</button></div>
+          </div>
+          <div class="b-mcard b-reveal">
+            <div class="b-mcard__stage" data-logo="hover"></div>
+            <div class="b-mcard__foot"><div><h4>Hover</h4><p>Наведите на карточку: пиксели подпрыгивают, по S пробегает свет, точка переворачивается.</p></div><span class="mono b-mcard__hint">hover me</span></div>
+          </div>
+          <div class="b-mcard b-reveal">
+            <div class="b-mcard__stage" data-logo="scrub"></div>
+            <div class="b-mcard__foot b-mcard__foot--col"><div><h4>Loader / Scrub</h4><p>Анимация привязана к прогрессу: так логотип собирается во время загрузки сайта.</p></div>
+              <label class="b-range"><input type="range" min="0" max="1000" value="0" id="scrub" aria-label="Прогресс сборки логотипа" /><span class="mono" id="scrub-val">0%</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLORS -->
+    <section class="b-section">
+      <div class="container">
+        <span class="eyebrow mono">04 — Цвет</span>
+        <h2 class="h2 b-reveal">Палитра.</h2>
+        <div class="b-colors">
+          <button class="b-color b-reveal" style="--c:#8b5cff" data-hex="#8B5CFF" type="button"><span class="b-color__name">Scale Violet</span><span class="mono">#8B5CFF · RGB 139 92 255</span></button>
+          <button class="b-color b-reveal" style="--c:#22e4ff" data-hex="#22E4FF" type="button"><span class="b-color__name">Signal Cyan</span><span class="mono">#22E4FF · RGB 34 228 255</span></button>
+          <button class="b-color b-color--ink b-reveal" style="--c:#05050a" data-hex="#05050A" type="button"><span class="b-color__name">Deep Ink</span><span class="mono">#05050A · RGB 5 5 10</span></button>
+          <button class="b-color b-color--light b-reveal" style="--c:#f2f0ff" data-hex="#F2F0FF" type="button"><span class="b-color__name">Mist</span><span class="mono">#F2F0FF · RGB 242 240 255</span></button>
+          <button class="b-color b-color--grad b-reveal" data-hex="linear-gradient(45deg, #8B5CFF, #22E4FF)" type="button"><span class="b-color__name">Growth Gradient</span><span class="mono">45° · violet → cyan, снизу-слева вверх-вправо</span></button>
+        </div>
+        <p class="b-toast mono" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- TYPE -->
+    <section class="b-section">
+      <div class="container">
+        <span class="eyebrow mono">05 — Шрифты</span>
+        <div class="b-type">
+          <div class="b-type__row b-reveal"><span class="b-type__sample" style="font-family:var(--display);font-weight:600">Aa Бб 01</span><div><h4>Unbounded</h4><p>Заголовки и логотип. SemiBold 600, трекинг −2…−5%.</p></div></div>
+          <div class="b-type__row b-reveal"><span class="b-type__sample" style="font-family:var(--body);font-weight:500">Aa Бб 01</span><div><h4>Manrope</h4><p>Основной текст и интерфейс. Regular 400 / Medium 500.</p></div></div>
+          <div class="b-type__row b-reveal"><span class="b-type__sample" style="font-family:var(--mono)">Aa Бб 01</span><div><h4>JetBrains Mono</h4><p>Метки, цифры, технические подписи. Всегда UPPERCASE.</p></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__bar mono">
+      <span>© <span class="year"></span> Scalio Engineering</span>
+      <span>Логотип генерируется скриптом <code>npm run logo</code></span>
+      <a href="./" class="to-top">На сайт ↗</a>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/brand.js"></script>
+</body>
+</html>

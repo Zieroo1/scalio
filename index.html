@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scalio — инженерия масштаба для B2B</title>
+  <meta name="description" content="Scalio — IT-партнёр для B2B: разработка продуктов, облачная инфраструктура, данные и AI. Строим системы, которые выдерживают рост." />
+  <meta name="theme-color" content="#05050a" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="is-loading">
+  <!-- Preloader -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader__grid"></div>
+    <div class="loader__inner">
+      <div class="loader__logo"></div>
+      <div class="loader__count"><span class="loader__num">0</span><sup>%</sup></div>
+      <div class="loader__bar"><i></i></div>
+      <ul class="loader__log mono">
+        <li>&gt; init core.runtime</li>
+        <li>&gt; mount gpu.particles [24 576]</li>
+        <li>&gt; warm up shaders</li>
+        <li>&gt; scale: ready</li>
+      </ul>
+    </div>
+    <div class="loader__curtain"></div>
+  </div>
+
+  <canvas class="webgl" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"><span class="cursor__label"></span></div></div>
+
+  <header class="nav">
+    <a href="#top" class="nav__logo" aria-label="Scalio — на главную" data-magnetic><span class="nav__logo-host"></span></a>
+    <nav class="nav__links">
+      <a href="#services" data-hover>Услуги</a>
+      <a href="#process" data-hover>Процесс</a>
+      <a href="#cases" data-hover>Кейсы</a>
+      <a href="#stack" data-hover>Стек</a>
+    </nav>
+    <div class="nav__right">
+      <span class="nav__status mono"><i></i>Открыты к проектам · Q1</span>
+      <a href="#contact" class="btn btn--small" data-magnetic><span>Обсудить проект</span></a>
+    </div>
+  </header>
+
+  <aside class="progress" aria-hidden="true">
+    <span class="progress__num mono">00</span>
+    <div class="progress__track"><i></i></div>
+    <span class="progress__label mono">scroll</span>
+  </aside>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" data-scene="0">
+      <div class="hero__meta mono">
+        <span>[ IT-партнёр для B2B ]</span>
+        <span>est. 2016 — Remote / EU / CIS</span>
+      </div>
+      <h1 class="hero__title" aria-label="Scalio">
+        <span class="hero__word">SCALIO</span>
+      </h1>
+      <div class="hero__bottom">
+        <p class="hero__lead reveal-lines">Проектируем, строим и масштабируем цифровые системы для бизнеса, которому тесно в текущей архитектуре.</p>
+        <div class="hero__cta">
+          <a href="#contact" class="btn" data-magnetic><span>Запустить проект</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#cases" class="link-arrow" data-hover>Смотреть кейсы ↘</a>
+        </div>
+      </div>
+      <div class="hero__scroll mono"><span>Скролл, чтобы масштабировать</span><i></i></div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="marquee" aria-label="Технологии">
+      <div class="marquee__row">
+        <div class="marquee__track">
+          <span>Cloud-native</span><b>✦</b><span>Highload</span><b>✦</b><span>AI / ML</span><b>✦</b><span>Data Platforms</span><b>✦</b><span>DevOps</span><b>✦</b><span>FinTech</span><b>✦</b><span>Logistics</span><b>✦</b><span>SaaS</span><b>✦</b>
+        </div>
+      </div>
+      <div class="marquee__row marquee__row--alt">
+        <div class="marquee__track">
+          <span>Kubernetes</span><b>/</b><span>Go</span><b>/</b><span>TypeScript</span><b>/</b><span>Rust</span><b>/</b><span>PostgreSQL</span><b>/</b><span>Kafka</span><b>/</b><span>Terraform</span><b>/</b><span>Python</span><b>/</b>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="manifesto" data-scene="1">
+      <div class="container">
+        <span class="eyebrow mono">01 — Манифест</span>
+        <p class="manifesto__text split-words">
+          Мы не продаём часы разработчиков. Мы берём ответственность за результат: от первой схемы архитектуры до системы, которая спокойно переживает x10 нагрузки, новые рынки и ночные релизы.
+        </p>
+        <div class="manifesto__foot">
+          <div class="pill mono">Engineering-first</div>
+          <div class="pill mono">Fixed outcome</div>
+          <div class="pill mono">Senior-only команды</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" data-scene="1">
+      <div class="container stats__grid">
+        <div class="stat"><div class="stat__num"><span data-count="140">0</span>+</div><p>B2B-продуктов в продакшене</p></div>
+        <div class="stat"><div class="stat__num"><span data-count="99.98" data-decimals="2">0</span>%</div><p>средний SLA систем на поддержке</p></div>
+        <div class="stat"><div class="stat__num">x<span data-count="12">0</span></div><p>рост пиковой нагрузки без переписывания</p></div>
+        <div class="stat"><div class="stat__num"><span data-count="85">0</span></div><p>инженеров уровня Senior+</p></div>
+      </div>
+    </section>
+
+    <!-- SERVICES (horizontal) -->
+    <section class="services" id="services" data-scene="2">
+      <div class="services__pin">
+        <div class="services__head container">
+          <span class="eyebrow mono">02 — Что мы делаем</span>
+          <h2 class="h2 split-chars">Полный цикл.<br/>Без компромиссов.</h2>
+        </div>
+        <div class="services__track">
+          <article class="card" data-tilt>
+            <div class="card__glow"></div>
+            <span class="card__idx mono">/01</span>
+            <div class="card__icon"><svg viewBox="0 0 64 64"><rect x="8" y="8" width="20" height="20" rx="4"/><rect x="36" y="8" width="20" height="20" rx="4"/><rect x="8" y="36" width="20" height="20" rx="4"/><path d="M46 36v20M36 46h20"/></svg></div>
+            <h3>Разработка продуктов</h3>
+            <p>SaaS-платформы, внутренние системы и клиентские кабинеты. От discovery и прототипа до релиза и роста.</p>
+            <ul class="mono"><li>Product discovery</li><li>Web &amp; Mobile</li><li>UX/UI</li></ul>
+          </article>
+          <article class="card" data-tilt>
+            <div class="card__glow"></div>
+            <span class="card__idx mono">/02</span>
+            <div class="card__icon"><svg viewBox="0 0 64 64"><path d="M18 44a12 12 0 1 1 3-23.6A16 16 0 0 1 52 26a10 10 0 0 1-2 19.8z"/><path d="M26 52v-8M38 52v-8M32 56v-12"/></svg></div>
+            <h3>Cloud &amp; DevOps</h3>
+            <p>Миграция в облако, Kubernetes, IaC и CI/CD, которые сокращают time-to-market с недель до часов.</p>
+            <ul class="mono"><li>K8s / Terraform</li><li>SRE &amp; Observability</li><li>FinOps</li></ul>
+          </article>
+          <article class="card" data-tilt>
+            <div class="card__glow"></div>
+            <span class="card__idx mono">/03</span>
+            <div class="card__icon"><svg viewBox="0 0 64 64"><ellipse cx="32" cy="14" rx="20" ry="7"/><path d="M12 14v18c0 4 9 7 20 7s20-3 20-7V14M12 32v18c0 4 9 7 20 7s20-3 20-7V32"/></svg></div>
+            <h3>Data Platforms</h3>
+            <p>Хранилища, стриминг и аналитика в реальном времени. Данные, которым доверяет совет директоров.</p>
+            <ul class="mono"><li>DWH / Lakehouse</li><li>Kafka streaming</li><li>BI</li></ul>
+          </article>
+          <article class="card" data-tilt>
+            <div class="card__glow"></div>
+            <span class="card__idx mono">/04</span>
+            <div class="card__icon"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="8"/><circle cx="12" cy="14" r="4"/><circle cx="52" cy="14" r="4"/><circle cx="12" cy="50" r="4"/><circle cx="52" cy="50" r="4"/><path d="M15 17l11 9M49 17l-11 9M15 47l11-9M49 47l-11-9"/></svg></div>
+            <h3>AI &amp; ML</h3>
+            <p>LLM-ассистенты, RAG по корпоративным знаниям, прогнозные модели и автоматизация рутины.</p>
+            <ul class="mono"><li>LLM / RAG</li><li>MLOps</li><li>Computer Vision</li></ul>
+          </article>
+          <article class="card" data-tilt>
+            <div class="card__glow"></div>
+            <span class="card__idx mono">/05</span>
+            <div class="card__icon"><svg viewBox="0 0 64 64"><path d="M32 6l22 8v16c0 14-10 24-22 28C20 54 10 44 10 30V14z"/><path d="M23 31l6 6 12-12"/></svg></div>
+            <h3>Security &amp; Audit</h3>
+            <p>Архитектурный аудит, пентесты, соответствие требованиям регуляторов и ISO 27001.</p>
+            <ul class="mono"><li>Arch review</li><li>Pentest</li><li>Compliance</li></ul>
+          </article>
+          <article class="card card--cta">
+            <span class="card__idx mono">/next</span>
+            <h3>Ваша задача<br/>не в списке?</h3>
+            <p>Скорее всего, мы уже решали похожую. Расскажите — ответим за 24 часа.</p>
+            <a href="#contact" class="btn" data-magnetic><span>Написать нам</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process" id="process" data-scene="3">
+      <div class="container process__grid">
+        <div class="process__aside">
+          <span class="eyebrow mono">03 — Процесс</span>
+          <h2 class="h2 split-chars">От идеи<br/>до x10.</h2>
+          <p class="muted">Прозрачный процесс с измеримыми контрольными точками. Вы всегда знаете, что происходит и сколько это стоит.</p>
+        </div>
+        <ol class="process__steps">
+          <svg class="process__line" viewBox="0 0 4 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M2 0V1000"/></svg>
+          <li class="step"><span class="step__n mono">01</span><div><h4>Discovery</h4><p>Погружаемся в бизнес, метрики и ограничения. На выходе — карта решений, оценка и roadmap.</p><em class="mono">1–3 недели</em></div></li>
+          <li class="step"><span class="step__n mono">02</span><div><h4>Архитектура</h4><p>Проектируем систему под рост: отказоустойчивость, безопасность, стоимость владения.</p><em class="mono">2 недели</em></div></li>
+          <li class="step"><span class="step__n mono">03</span><div><h4>Разработка</h4><p>Двухнедельные спринты, демо каждую итерацию, CI/CD и автотесты с первого дня.</p><em class="mono">от 3 месяцев</em></div></li>
+          <li class="step"><span class="step__n mono">04</span><div><h4>Запуск</h4><p>Плавный rollout, нагрузочное тестирование, мониторинг и on-call команда.</p><em class="mono">0 даунтайма</em></div></li>
+          <li class="step"><span class="step__n mono">05</span><div><h4>Масштабирование</h4><p>Оптимизируем, развиваем и растём вместе с продуктом. SLA до 99.99%.</p><em class="mono">∞</em></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CASES -->
+    <section class="cases" id="cases" data-scene="4">
+      <div class="container">
+        <div class="cases__head">
+          <span class="eyebrow mono">04 — Избранные кейсы</span>
+          <h2 class="h2 split-chars">Результаты,<br/>а не обещания.</h2>
+        </div>
+        <div class="cases__stack">
+          <article class="case" data-cursor="Кейс">
+            <div class="case__inner" style="--c1:#7c4dff;--c2:#22e4ff">
+              <div class="case__info">
+                <span class="mono">FinTech · Платёжная платформа</span>
+                <h3>NordPay</h3>
+                <p>Переписали процессинг на событийную архитектуру. Платформа выдерживает 18 000 транзакций в секунду.</p>
+                <div class="case__kpi"><div><b>-62%</b><span>latency</span></div><div><b>x9</b><span>throughput</span></div><div><b>99.99%</b><span>uptime</span></div></div>
+              </div>
+              <div class="case__visual"><div class="viz viz--bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            </div>
+          </article>
+          <article class="case" data-cursor="Кейс">
+            <div class="case__inner" style="--c1:#ff4d8d;--c2:#ffb84d">
+              <div class="case__info">
+                <span class="mono">Logistics · SaaS для 3PL</span>
+                <h3>Cargonet</h3>
+                <p>Мультитенантная SaaS-платформа для управления складами в 14 странах. Онбординг клиента — за 1 день.</p>
+                <div class="case__kpi"><div><b>14</b><span>стран</span></div><div><b>-40%</b><span>OPEX</span></div><div><b>3.2M</b><span>заказов / мес</span></div></div>
+              </div>
+              <div class="case__visual"><div class="viz viz--orbit"><i></i><i></i><i></i><b></b></div></div>
+            </div>
+          </article>
+          <article class="case" data-cursor="Кейс">
+            <div class="case__inner" style="--c1:#22e4a0;--c2:#3b82ff">
+              <div class="case__info">
+                <span class="mono">Retail · AI-аналитика</span>
+                <h3>Shelfmind</h3>
+                <p>ML-прогнозирование спроса для сети из 900 магазинов. Списания сократились вдвое за первый квартал.</p>
+                <div class="case__kpi"><div><b>-51%</b><span>списаний</span></div><div><b>94%</b><span>точность</span></div><div><b>900</b><span>магазинов</span></div></div>
+              </div>
+              <div class="case__visual"><div class="viz viz--wave"><svg viewBox="0 0 300 160" preserveAspectRatio="none"><path d="M0 120 C40 120 50 40 90 60 S150 140 190 80 S250 20 300 40"/><path d="M0 130 C50 110 70 90 110 100 S170 120 210 100 S260 70 300 80"/></svg></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="stack" id="stack" data-scene="5">
+      <div class="container">
+        <span class="eyebrow mono">05 — Технологии</span>
+        <h2 class="h2 split-chars">Стек, проверенный<br/>нагрузкой.</h2>
+        <div class="stack__grid">
+          <div class="chip" data-tilt><b>Go</b><span>backend</span></div>
+          <div class="chip" data-tilt><b>Rust</b><span>core</span></div>
+          <div class="chip" data-tilt><b>TypeScript</b><span>fullstack</span></div>
+          <div class="chip" data-tilt><b>Python</b><span>ML / data</span></div>
+          <div class="chip" data-tilt><b>Kotlin</b><span>mobile</span></div>
+          <div class="chip" data-tilt><b>Kubernetes</b><span>orchestration</span></div>
+          <div class="chip" data-tilt><b>Kafka</b><span>streaming</span></div>
+          <div class="chip" data-tilt><b>PostgreSQL</b><span>OLTP</span></div>
+          <div class="chip" data-tilt><b>ClickHouse</b><span>OLAP</span></div>
+          <div class="chip" data-tilt><b>Terraform</b><span>IaC</span></div>
+          <div class="chip" data-tilt><b>AWS · GCP</b><span>cloud</span></div>
+          <div class="chip" data-tilt><b>PyTorch</b><span>AI</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact" data-scene="6">
+      <div class="container">
+        <span class="eyebrow mono">06 — Контакт</span>
+        <h2 class="contact__title">
+          <span class="line"><span>Давайте</span></span>
+          <span class="line"><span><em>масштабировать</em></span></span>
+          <span class="line"><span>ваш бизнес.</span></span>
+        </h2>
+        <div class="contact__grid">
+          <form class="brief" id="brief">
+            <div class="brief__row">
+              <label class="field"><input name="name" required placeholder=" " autocomplete="name" /><span>Имя</span></label>
+              <label class="field"><input name="company" placeholder=" " autocomplete="organization" /><span>Компания</span></label>
+            </div>
+            <div class="brief__tags">
+              <p class="mono">Что нужно?</p>
+              <label><input type="checkbox" name="need" value="Разработка продукта" /><span>Продукт</span></label>
+              <label><input type="checkbox" name="need" value="Cloud / DevOps" /><span>Cloud / DevOps</span></label>
+              <label><input type="checkbox" name="need" value="Данные" /><span>Данные</span></label>
+              <label><input type="checkbox" name="need" value="AI / ML" /><span>AI / ML</span></label>
+              <label><input type="checkbox" name="need" value="Аудит" /><span>Аудит</span></label>
+            </div>
+            <label class="field"><textarea name="message" rows="3" placeholder=" "></textarea><span>Коротко о задаче</span></label>
+            <button type="submit" class="btn btn--big" data-magnetic><span>Отправить бриф</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </form>
+          <div class="contact__info">
+            <a href="mailto:hello@scalio.dev" class="contact__mail" data-hover>hello@scalio.dev</a>
+            <div class="contact__cols">
+              <div><span class="mono">Офис</span><p>Remote-first<br/>Хабы: Белград · Алматы · Тбилиси</p></div>
+              <div><span class="mono">Соцсети</span><p><a href="#" data-hover>Telegram</a><br/><a href="#" data-hover>LinkedIn</a><br/><a href="#" data-hover>GitHub</a></p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__big" aria-hidden="true"><span>SCALIO</span></div>
+    <div class="container footer__bar mono">
+      <span>© <span class="year"></span> Scalio Engineering</span>
+      <span class="footer__clock">—</span>
+      <a href="brand.html" data-hover class="to-top">Брендбук ↗</a>
+      <a href="#top" data-hover class="to-top">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
