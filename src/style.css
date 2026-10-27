@@ -192,10 +192,22 @@ section { position: relative; }
 .card p { color: var(--muted); font-size: 16px; }
 .card ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
 .card li { padding: 6px 12px; border-radius: 99px; border: 1px solid var(--line); font-size: 10px; color: var(--fg); }
-.card--cta { background: var(--grad); color: #05050a; justify-content: space-between; }
-.card--cta .card__idx, .card--cta p { color: rgba(5, 5, 10, 0.7); }
+.card--cta {
+  justify-content: space-between; isolation: isolate;
+  background:
+    radial-gradient(120% 70% at 100% 100%, rgba(139, 92, 255, 0.28), transparent 60%),
+    radial-gradient(80% 50% at 0% 100%, rgba(34, 228, 255, 0.12), transparent 70%),
+    #0b0b14;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+/* fine dot grid fading out toward the top */
+.card--cta::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px); background-size: 18px 18px;
+  mask-image: linear-gradient(0deg, #000, transparent 75%); -webkit-mask-image: linear-gradient(0deg, #000, transparent 75%); }
+.card--cta .card__idx { color: var(--cyan); }
 .card--cta h3 { font-size: 38px; margin-top: auto; }
-.card--cta .btn { align-self: flex-start; margin-top: 30px; background: #05050a; color: var(--fg); }
+.card--cta p { color: var(--muted); }
+.card--cta .btn { align-self: flex-start; margin-top: 30px; }
 
 /* ---------- process ---------- */
 .process { padding: 22vh 0; }
