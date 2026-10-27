@@ -240,8 +240,11 @@ section { position: relative; }
   background: radial-gradient(120% 120% at 100% 0%, color-mix(in srgb, var(--c1) 40%, transparent), transparent 55%),
               radial-gradient(90% 90% at 0% 100%, color-mix(in srgb, var(--c2) 28%, transparent), transparent 60%), #0b0b14;
   border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 40px 120px -40px rgba(0, 0, 0, 0.9);
-  will-change: transform, filter;
+  will-change: transform;
 }
+/* dimming overlay (driven by --dim from GSAP); a CSS filter on this 3D-transformed card
+   makes Chrome flash it black mid-scroll */
+.case__inner::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: #05050a; opacity: var(--dim, 0); pointer-events: none; z-index: 2; }
 .case__info { padding: clamp(28px, 4vw, 60px); display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
 .case__info > span { color: var(--muted); }
 .case h3 { font-family: var(--display); font-weight: 800; font-size: clamp(54px, 7.5vw, 130px); letter-spacing: -0.06em; line-height: 0.9; }

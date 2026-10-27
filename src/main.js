@@ -246,15 +246,21 @@ function initScroll() {
   cases.forEach((c, i) => {
     const inner = $('.case__inner', c);
     gsap.from(inner, {
-      rotationX: 28, y: 120, scale: 0.92, opacity: 0, transformOrigin: '50% 0%',
-      ease: 'none',
-      scrollTrigger: { trigger: c, start: 'top 105%', end: 'top 35%', scrub: true },
+      rotationX: 18, y: 100, scale: 0.94, transformOrigin: '50% 0%', ease: 'power2.out',
+      scrollTrigger: { trigger: c, start: 'top 105%', end: 'top 35%', scrub: 0.8 },
+    });
+    // fade in quickly so the incoming card is never a half-transparent overlay
+    gsap.from(inner, {
+      opacity: 0, ease: 'none',
+      scrollTrigger: { trigger: c, start: 'top 100%', end: 'top 75%', scrub: 0.8 },
     });
     if (i < cases.length - 1) {
+      // the card underneath recedes only while the next one actually slides over it
+      // (next card's top travelling from 75% to the sticky line at 13vh), and stays readable
       gsap.to(inner, {
-        scale: 0.86, rotationX: -14, y: -30, filter: 'brightness(0.35) blur(2px)', transformOrigin: '50% 0%', ease: 'none',
+        scale: 0.93, rotationX: -8, y: -20, '--dim': 0.45, transformOrigin: '50% 0%', ease: 'power1.in',
         immediateRender: false,
-        scrollTrigger: { trigger: cases[i + 1], start: 'top bottom', end: 'top 18%', scrub: true },
+        scrollTrigger: { trigger: cases[i + 1], start: 'top 75%', end: 'top 13%', scrub: 0.8 },
       });
     }
     ScrollTrigger.create({ trigger: c, start: 'top 60%', onEnter: () => c.classList.add('is-in') });
