@@ -34,17 +34,19 @@ export function mountLogo(host, { word = true } = {}) {
   gsap.set(logo.px, { transformOrigin: '50% 100%' });
   gsap.set(logo.letters, { transformOrigin: '50% 100%' });
   gsap.set(logo.tittle, { transformOrigin: '50% 50%' });
-  // gap slightly > 1 so the next dash never starts exactly at the path end (renders a sliver)
-  gsap.set(logo.s, { strokeDasharray: '1 1.01', strokeDashoffset: 0, svgOrigin: logo.sqOrigin });
-  gsap.set(logo.spark, { strokeDasharray: '0.08 1.2', strokeDashoffset: 0.08, opacity: 0 });
+  // gap slightly > 1 so the next dash never starts exactly at the path end (renders a sliver).
+  // Dash values are fractions of pathLength=1, so every dash tween needs autoRound:false —
+  // GSAP otherwise rounds them to whole px (0.92 → 1) and the S pops in instead of drawing.
+  gsap.set(logo.s, { strokeDasharray: '1 1.01', strokeDashoffset: 0, svgOrigin: logo.sqOrigin, autoRound: false });
+  gsap.set(logo.spark, { strokeDasharray: '0.08 1.2', strokeDashoffset: 0.08, opacity: 0, autoRound: false });
   return logo;
 }
 
 /** Puts every part of the logo into its pre-intro (invisible) state. */
 export function hideLogo(l) {
   gsap.set(l.px, { scale: 0 });
-  gsap.set(l.s, { strokeDashoffset: 1 - l.sq, scale: 0, svgOrigin: l.sqOrigin });
-  gsap.set(l.spark, { strokeDashoffset: 0.08, opacity: 0 });
+  gsap.set(l.s, { strokeDashoffset: 1 - l.sq, scale: 0, svgOrigin: l.sqOrigin, autoRound: false });
+  gsap.set(l.spark, { strokeDashoffset: 0.08, opacity: 0, autoRound: false });
   gsap.set(l.letters, { y: 22, scaleY: 0.2, opacity: 0 });
   gsap.set(l.tittle, { y: -46, scale: 0.4, rotation: 0, opacity: 0 });
 }
@@ -60,9 +62,9 @@ export function logoIntro(l, { draw = 1.1 } = {}) {
   tl.to(l.px, { scale: 1, duration: 0.45, ease: 'back.out(3)', stagger: 0.14 })
     .to(l.s, { scale: 1, duration: 0.45, ease: 'back.out(3)' }, 0.28)
     .addLabel('draw', '+=0.08')
-    .to(l.s, { strokeDashoffset: 0, duration: draw, ease: 'power2.inOut' }, 'draw')
-    .set(l.spark, { opacity: 1, strokeDashoffset: 0.08 - l.sq }, 'draw')
-    .to(l.spark, { strokeDashoffset: -0.92, duration: draw, ease: 'power2.inOut' }, 'draw')
+    .to(l.s, { strokeDashoffset: 0, duration: draw, ease: 'power2.inOut', autoRound: false }, 'draw')
+    .set(l.spark, { opacity: 1, strokeDashoffset: 0.08 - l.sq, autoRound: false }, 'draw')
+    .to(l.spark, { strokeDashoffset: -0.92, duration: draw, ease: 'power2.inOut', autoRound: false }, 'draw')
     .to(l.spark, { opacity: 0, duration: 0.35 }, `draw+=${draw - 0.1}`)
     .to(l.letters, {
       y: 0, scaleY: 1, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.05,
@@ -79,8 +81,8 @@ export function logoHover(l, target = l.host) {
     if (tl && tl.isActive()) return;
     tl = gsap.timeline()
       .to(l.px, { y: -5, duration: 0.18, ease: 'power2.out', stagger: 0.07, yoyo: true, repeat: 1 })
-      .set(l.spark, { opacity: 1, strokeDashoffset: 0.08 }, 0.12)
-      .to(l.spark, { strokeDashoffset: -1, duration: 0.75, ease: 'power2.inOut' }, 0.12)
+      .set(l.spark, { opacity: 1, strokeDashoffset: 0.08, autoRound: false }, 0.12)
+      .to(l.spark, { strokeDashoffset: -1, duration: 0.75, ease: 'power2.inOut', autoRound: false }, 0.12)
       .set(l.spark, { opacity: 0 })
       .to(l.letters, { y: -6, duration: 0.18, ease: 'power2.out', stagger: 0.035, yoyo: true, repeat: 1 }, 0.35)
       .to(l.tittle, { rotation: '+=180', duration: 0.6, ease: 'back.inOut(2.4)' }, 0.45);

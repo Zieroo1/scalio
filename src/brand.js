@@ -53,8 +53,8 @@ let heroIntro = logoIntro(hero, { draw: 1.5 }).delay(0.4);
 
 // idle: a light pulse travels the S every few seconds once the intro is done
 const idle = gsap.timeline({ repeat: -1, repeatDelay: 3.5, paused: true })
-  .set(hero.spark, { opacity: 1, strokeDashoffset: 0.08 })
-  .to(hero.spark, { strokeDashoffset: -1, duration: 1.3, ease: 'power2.inOut' })
+  .set(hero.spark, { opacity: 1, strokeDashoffset: 0.08, autoRound: false })
+  .to(hero.spark, { strokeDashoffset: -1, duration: 1.3, ease: 'power2.inOut', autoRound: false })
   .set(hero.spark, { opacity: 0 })
   .to(hero.tittle, { rotation: '+=90', duration: 0.5, ease: 'back.inOut(2.4)' }, '-=0.35');
 heroIntro.eventCallback('onComplete', () => idle.restart(true));
@@ -140,7 +140,7 @@ const cParts = {
   marks: $$('.c-dot, .c-box, .c-dim', construct),
 };
 gsap.set(construct, { autoAlpha: 0 });
-gsap.set(cParts.circles, { strokeDasharray: '1 1', strokeDashoffset: 1 });
+gsap.set(cParts.circles, { strokeDasharray: '1 1', strokeDashoffset: 1, autoRound: false });
 
 let constructTl = null;
 $('#construct').addEventListener('click', (e) => {
@@ -154,7 +154,7 @@ $('#construct').addEventListener('click', (e) => {
       .to(['.b-hero__logo .sc-l', '.b-hero__logo .sc-s', '.b-hero__logo .sc-px', '.b-hero__logo .sc-tittle'], { opacity: 0.28, duration: 0.5 }, 0)
       .fromTo(cParts.grid, { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: { each: 0.006, from: 'start' } }, 0)
       .fromTo(cParts.lines, { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 0.9, ease: 'expo.inOut', stagger: 0.08 }, 0.15)
-      .to(cParts.circles, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.1 }, 0.35)
+      .to(cParts.circles, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.1, autoRound: false }, 0.35)
       .fromTo(cParts.marks, { opacity: 0, scale: 0, transformOrigin: '50% 50%' }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)', stagger: 0.05 }, 0.7)
       .fromTo(cParts.labels, { opacity: 0, y: 1.5 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.04 }, 0.9);
   } else {
