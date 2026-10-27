@@ -283,7 +283,7 @@ section { position: relative; }
 
 /* ---------- contact ---------- */
 .contact { padding: 20vh 0 16vh; }
-.contact__title { font-family: var(--display); font-weight: 600; font-size: clamp(46px, 8.4vw, 150px); line-height: 0.95; letter-spacing: -0.055em; perspective: 900px; }
+.contact__title { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 7.2vw, 130px); line-height: 0.95; letter-spacing: -0.055em; perspective: 900px; }
 .contact__title .line { display: block; overflow: hidden; padding-bottom: 0.06em; }
 .contact__title .line > span { display: inline-block; transform-origin: 50% 100%; }
 .contact__title em { font-style: normal; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
