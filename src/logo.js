@@ -13,11 +13,20 @@ export function mountLogo(host, { word = true } = {}) {
   spark.setAttribute('class', 'sc-spark');
   spark.setAttribute('stroke', '#fff');
   s.after(spark);
+  // Fraction of the S path covered by one stroke-width: with butt caps that first segment
+  // renders as a stroke×stroke square — the third "pixel" the S is drawn out of.
+  const len = s.getTotalLength();
+  const sq = len > 0 ? Number(s.getAttribute('stroke-width')) / len : 0.078;
+  const d0 = s.getPointAtLength(0);
+  const half = Number(s.getAttribute('stroke-width')) / 2;
   const logo = {
     host,
     svg,
     s,
     spark,
+    sq,
+    // centre of that square in SVG user units (path starts at its left edge, runs right)
+    sqOrigin: `${d0.x + half} ${d0.y}`,
     px: [...svg.querySelectorAll('.sc-px')],
     letters: [...svg.querySelectorAll('.sc-l')],
     tittle: svg.querySelector('.sc-tittle'),
@@ -26,7 +35,7 @@ export function mountLogo(host, { word = true } = {}) {
   gsap.set(logo.letters, { transformOrigin: '50% 100%' });
   gsap.set(logo.tittle, { transformOrigin: '50% 50%' });
   // gap slightly > 1 so the next dash never starts exactly at the path end (renders a sliver)
-  gsap.set(logo.s, { strokeDasharray: '1 1.01', strokeDashoffset: 0 });
+  gsap.set(logo.s, { strokeDasharray: '1 1.01', strokeDashoffset: 0, svgOrigin: logo.sqOrigin });
   gsap.set(logo.spark, { strokeDasharray: '0.08 1.2', strokeDashoffset: 0.08, opacity: 0 });
   return logo;
 }
@@ -34,23 +43,25 @@ export function mountLogo(host, { word = true } = {}) {
 /** Puts every part of the logo into its pre-intro (invisible) state. */
 export function hideLogo(l) {
   gsap.set(l.px, { scale: 0 });
-  gsap.set(l.s, { strokeDashoffset: 1 });
+  gsap.set(l.s, { strokeDashoffset: 1 - l.sq, scale: 0, svgOrigin: l.sqOrigin });
   gsap.set(l.spark, { strokeDashoffset: 0.08, opacity: 0 });
   gsap.set(l.letters, { y: 22, scaleY: 0.2, opacity: 0 });
   gsap.set(l.tittle, { y: -46, scale: 0.4, rotation: 0, opacity: 0 });
 }
 
 /**
- * Construction sequence: pixels grow like a bar chart, the S is drawn from them with a
- * light trail on its head, letters rise, and the square tittle drops in and clicks 90°.
+ * Construction sequence: two pixels and then a stroke-sized square grow like a bar chart,
+ * the S is drawn out of that square with a light trail on its head, letters rise, and the
+ * square tittle drops in and clicks 90°.
  */
 export function logoIntro(l, { draw = 1.1 } = {}) {
   hideLogo(l);
   const tl = gsap.timeline();
   tl.to(l.px, { scale: 1, duration: 0.45, ease: 'back.out(3)', stagger: 0.14 })
-    .addLabel('draw', '-=0.12')
+    .to(l.s, { scale: 1, duration: 0.45, ease: 'back.out(3)' }, 0.28)
+    .addLabel('draw', '+=0.08')
     .to(l.s, { strokeDashoffset: 0, duration: draw, ease: 'power2.inOut' }, 'draw')
-    .set(l.spark, { opacity: 1 }, 'draw')
+    .set(l.spark, { opacity: 1, strokeDashoffset: 0.08 - l.sq }, 'draw')
     .to(l.spark, { strokeDashoffset: -0.92, duration: draw, ease: 'power2.inOut' }, 'draw')
     .to(l.spark, { opacity: 0, duration: 0.35 }, `draw+=${draw - 0.1}`)
     .to(l.letters, {

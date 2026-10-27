@@ -133,17 +133,20 @@ writeFileSync('public/favicon.svg', fav);
 
 /* ---------------- self-animating SVG (pure CSS, loops) ---------------- */
 const n = letters.length;
+// The S is drawn out of a third, stroke-sized square: with butt caps the first `stroke` units of
+// the path render as that square. Path length = straight runs (16 + 8 + 16) + two r=12 semicircles.
+const S_LEN = 16 + 8 + 16 + 2 * Math.PI * 12;
+const SQ_OFF = (1 - MARK.stroke / S_LEN).toFixed(4);
+const SQ_ORIGIN = `${20 + MARK.stroke / 2}px 56px`; // centre of the square (path starts at 20,56)
 const css = `
 .sc-px{transform-box:fill-box;transform-origin:50% 100%;animation:px 7s cubic-bezier(.2,1.6,.4,1) infinite both}
 .sc-px-1{animation-delay:.12s}
-.sc-s{stroke-dasharray:1 1.01;animation:draw 7s cubic-bezier(.65,0,.35,1) infinite both}
+.sc-s{stroke-dasharray:1 1.01;transform-box:view-box;transform-origin:${SQ_ORIGIN};animation:draw 7s cubic-bezier(.65,0,.35,1) infinite both}
 .sc-l{transform-box:fill-box;transform-origin:50% 100%;animation:rise 7s cubic-bezier(.16,1,.3,1) infinite both}
-${letters.map((_, i) => `.sc-l-${i}{animation-delay:${(0.75 + i * 0.07).toFixed(2)}s}`).join('\n')}
-.sc-tittle{transform-box:fill-box;transform-origin:50% 100%;animation:drop 7s cubic-bezier(.3,1.8,.5,1) infinite both;animation-delay:${(0.75 + n * 0.07 + 0.1).toFixed(2)}s}
+${letters.map((_, i) => `.sc-l-${i}{animation-delay:${(1.0 + i * 0.07).toFixed(2)}s}`).join('\n')}
+.sc-tittle{transform-box:fill-box;transform-origin:50% 100%;animation:drop 7s cubic-bezier(.3,1.8,.5,1) infinite both;animation-delay:${(1.0 + n * 0.07 + 0.1).toFixed(2)}s}
 @keyframes px{0%{transform:scale(0)}6%,88%{transform:scale(1)}94%,100%{transform:scale(0)}}
-@keyframes draw{0%,3%{stroke-dashoffset:1}17%,88%{stroke-dashoffset:0}96%,100%{stroke-dashoffset:-1}}
-@keyframes rise{0%{transform:translateY(40%) scaleY(.2);opacity:0}9%,86%{transform:none;opacity:1}93%,100%{transform:translateY(-30%);opacity:0}}
-@keyframes drop{0%{transform:translateY(-260%) scale(.4);opacity:0}8%,84%{transform:none;opacity:1}90%,100%{transform:scale(0);opacity:0}}
+@keyframes draw{0%,4%{stroke-dashoffset:${SQ_OFF};transform:scale(0);animation-timing-function:cubic-bezier(.2,1.6,.4,1)}10%,11%{stroke-dashoffset:${SQ_OFF};transform:scale(1)}24%,88%{stroke-dashoffset:0;transform:scale(1)}96%,100%{stroke-dashoffset:-1;transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 `;
 writeFileSync('public/brand/scalio-logo-animated.svg',
